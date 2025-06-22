@@ -45,12 +45,12 @@ std::optional<std::string> resolveExprPath(const std::string &BasePath,
 
     if (fs::is_directory(Path))
       return Path.append("default.nix");
+
+    return Path;
   } catch (const fs::filesystem_error &) {
     // Treat any filesystem error as "path does not exist"
     return std::nullopt;
   }
-
-  return Path;
 }
 
 void dfs(const Node *N, const std::string &BasePath,
